@@ -28,7 +28,7 @@
 === form
 =====================================================================
 -->
-<form name="Form" method="POST" action="/asteraede/templates/t/QtCreator/pri-pro.t"
+<form name="Form" method="POST" action="../templates/t/QtCreator/Framework-pri.t"
  onSubmit="return setFormSubmit(getFormValue2('FormTemplate','FormAction','Form'),getFormValue('FormMethod','Form'),'Form')">
     <div class="form">
 
@@ -40,23 +40,21 @@
     <br/>
 
     Template: <select name="FormTemplate">
-    <option value="/asteraede/templates/t/qtcreator/Framework-pri.t">QtCreator .pri file (/asteraede/templates/t/qtcreator/Framework-pri.t)</option>
-    <option value="/asteraede/templates/t/QtCreator/Framework-os-pri.t">os QtCreator .pri file (/asteraede/templates/t/QtCreator/Framework-os-pri.t)</option>
-    <option value="/asteraede/templates/t/QtCreator/Framework-build-pri.t">build QtCreator .pri file (/asteraede/templates/t/QtCreator/Framework-build-pri.t)</option>
+    <option value="../templates/t/qtcreator/Framework-pri.t">QtCreator .pri file (../templates/t/qtcreator/Framework-pri.t)</option>
+    <option value="../templates/t/QtCreator/Framework-os-pri.t">os QtCreator .pri file (../templates/t/QtCreator/Framework-os-pri.t)</option>
+    <option value="../templates/t/QtCreator/Framework-build-pri.t">build QtCreator .pri file (../templates/t/QtCreator/Framework-build-pri.t)</option>
     <option value=""></option>
-    <option value="/asteraede/templates/t/QtCreator/Framework-lib-pri.t">library QtCreator .pri file (/asteraede/templates/t/QtCreator/Framework-lib-pri.t)</option>
-    <option value="/asteraede/templates/t/QtCreator/Framework-lib-pro.t">library QtCreator .pro file (/asteraede/templates/t/QtCreator/Framework-lib-pro.t)</option>
+    <option value="../templates/t/QtCreator/Framework-lib-pri.t">library QtCreator .pri file (../templates/t/QtCreator/Framework-lib-pri.t)</option>
+    <option value="../templates/t/QtCreator/Framework-lib-pro.t">library QtCreator .pro file (../templates/t/QtCreator/Framework-lib-pro.t)</option>
     <option value=""></option>
-    <option value="/asteraede/templates/t/QtCreator/Framework-exe-pri.t">executable QtCreator .pri file (/asteraede/templates/t/QtCreator/Framework-exe-pri.t)</option>
-    <option value="/asteraede/templates/t/QtCreator/Framework-exe-pro.t">executable QtCreator .pro file (/asteraede/templates/t/QtCreator/Framework-exe-pro.t)</option>
+    <option value="../templates/t/QtCreator/Framework-exe-pri.t">executable QtCreator .pri file (../templates/t/QtCreator/Framework-exe-pri.t)</option>
+    <option value="../templates/t/QtCreator/Framework-exe-pro.t">executable QtCreator .pro file (../templates/t/QtCreator/Framework-exe-pro.t)</option>
     <option value=""></option>
-    <option value="/asteraede/templates/t/QtCreator/Framework-slib-pri.t">shared library QtCreator .pri file (/asteraede/templates/t/QtCreator/Framework-slib-pri.t)</option>
-    <option value="/asteraede/templates/t/QtCreator/Framework-slib-pro.t">shared library QtCreator .pro file (/asteraede/templates/t/QtCreator/Framework-slib-pro.t)</option>
+    <option value="../templates/t/QtCreator/Framework-slib-pri.t">shared library QtCreator .pri file (../templates/t/QtCreator/Framework-slib-pri.t)</option>
+    <option value="../templates/t/QtCreator/Framework-slib-pro.t">shared library QtCreator .pro file (../templates/t/QtCreator/Framework-slib-pro.t)</option>
     <option value=""></option>
-    <option value="/asteraede/templates/t/QtCreator/pri-pro.t">QtCreator project (/asteraede/templates/t/QtCreator/pri-pro.t)</option>
-    <option value=""></option>
-    <option value="/asteraede/templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (/asteraede/templates/t/t/parameters.t)</option>
-    <option value="/asteraede/templates/t/t/functions.t">t functions &nbsp;&nbsp; (/asteraede/templates/t/t/functions.t)</option>
+    <option value="../templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (../templates/t/t/parameters.t)</option>
+    <option value="../templates/t/t/functions.t">t functions &nbsp;&nbsp; (../templates/t/t/functions.t)</option>
     <option value=""></option>
     <option value="/asteraede-cgi/cgi">cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgi)</option>
     <option value="/asteraede-cgi/cgicatch">catch cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgicatch)</option>
@@ -67,7 +65,7 @@
     <br/>
     Framework: <input name="Framework" value=""></input>[asteraede]
     <input name="is_Framework" value="no" type="checkbox" unchecked="checked">no</input>
-    Depends: <input name="Depends" value="" size="30"></input>[rostra;nadir;fila;crono]
+    Depends: <input name="Depends" value="" size="30"></input>[rostra;nadir;fila;crono;rete;stara]
     <input name="is_Depends" value="no" type="checkbox" checked="checked">no</input>
     <br/>
     Target: <input name="Target" value=""></input>[%Framework%]<input type="checkbox" name="HasExe" value="yes" unchecked="yes"/>_exe
@@ -143,10 +141,10 @@
     </select>
     <br/>
     Action: <select name="FormAction">
-    <option value="/asteraede/templates/t/QtCreator/pri-pro.t">QtCreator project (/asteraede/templates/t/QtCreator/pri-pro.t)</option>
+    <option value="../templates/t/QtCreator/Framework-pri.t">QtCreator project (../templates/t/QtCreator/Framework-pri.t)</option>
     <option value=""></option>
-    <option value="/asteraede/templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (/asteraede/templates/t/t/parameters.t)</option>
-    <option value="/asteraede/templates/t/t/functions.t">t functions &nbsp;&nbsp; (/asteraede/templates/t/t/functions.t)</option>
+    <option value="../templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (../templates/t/t/parameters.t)</option>
+    <option value="../templates/t/t/functions.t">t functions &nbsp;&nbsp; (../templates/t/t/functions.t)</option>
     <option value=""></option>
     <option value="/asteraede-cgi/cgi">cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgi)</option>
     <option value="/asteraede-cgi/cgicatch">catch cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgicatch)</option>

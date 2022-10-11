@@ -16,7 +16,7 @@
 %#   File: Framework-pri-pro.t
 %#
 %# Author: $author$
-%#   Date: 12/15/2021
+%#   Date: 12/15/2021, 10/10/2022
 %########################################################################
 %with(%
 %is_include_path,%(%else-then(%is_include_path%,%(%is_Include_path%)%)%)%,%
@@ -30,12 +30,16 @@
 %TYPEEXTENSION,%(%else-then(%TYPEEXTENSION%,%(%toupper(%TypeExtension%)%)%)%)%,%
 %typeextension,%(%else-then(%_typeextension%,%(%tolower(%TypeExtension%)%)%)%)%,%
 %is_framework,%(%else-then(%is_framework%,%(%is_Framework%)%)%)%,%
-%framework,%(%else-then(%if-no(%is_framework%,,%(%framework%)%)%,%(%if-no(%is_framework%,,%(framework)%)%)%)%)%,%
+%framework,%(%else-then(%if-no(%is_framework%,,%(%framework%)%)%,%(%if-no(%is_framework%,,%(%
+%%else-then(%include(%Include_path%/../t/Framework.t)%,framework)%%
+%)%)%)%)%)%,%
 %Framework,%(%else-then(%if-no(%is_framework%,,%(%Framework%)%)%,%(%if-no(%is_framework%,,%(%framework%)%)%)%)%)%,%
 %FRAMEWORK,%(%else-then(%FRAMEWORK%,%(%toupper(%Framework%)%)%)%)%,%
 %framework,%(%else-then(%_framework%,%(%tolower(%Framework%)%)%)%)%,%
 %is_depends,%(%else-then(%is_depends%,%(%is_Depends%)%)%)%,%
-%depends,%(%else-then(%if-no(%is_depends%,,%(%depends%)%)%,%(%if-no(%is_depends%,,%(depends)%)%)%)%)%,%
+%depends,%(%else-then(%if-no(%is_depends%,,%(%depends%)%)%,%(%if-no(%is_depends%,,%(%
+%%else-then(%include(%Include_path%/../t/Framework-depends.t)%,depends)%%
+%)%)%)%)%)%,%
 %Depends,%(%else-then(%if-no(%is_depends%,,%(%Depends%)%)%,%(%if-no(%is_depends%,,%(%depends%)%)%)%)%)%,%
 %DEPENDS,%(%else-then(%DEPENDS%,%(%toupper(%Depends%)%)%)%)%,%
 %depends,%(%else-then(%_depends%,%(%tolower(%Depends%)%)%)%)%,%

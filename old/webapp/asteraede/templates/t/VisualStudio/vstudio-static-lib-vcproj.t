@@ -1,0 +1,361 @@
+%########################################################################
+%# Copyright (c) 1988-2022 $organization$
+%#
+%# This software is provided by the author and contributors ``as is'' 
+%# and any express or implied warranties, including, but not limited to, 
+%# the implied warranties of merchantability and fitness for a particular 
+%# purpose are disclaimed. In no event shall the author or contributors 
+%# be liable for any direct, indirect, incidental, special, exemplary, 
+%# or consequential damages (including, but not limited to, procurement 
+%# of substitute goods or services; loss of use, data, or profits; or 
+%# business interruption) however caused and on any theory of liability, 
+%# whether in contract, strict liability, or tort (including negligence 
+%# or otherwise) arising in any way out of the use of this software, 
+%# even if advised of the possibility of such damage.
+%#
+%#   File: vstudio-static-lib-vcproj.t
+%#
+%# Author: $author$
+%#   Date: 6/8/2022
+%########################################################################
+%with(%
+%is_include_path,%(%else-then(%is_include_path%,%(%is_Include_path%)%)%)%,%
+%include_path,%(%else-then(%if-no(%is_include_path%,,%(%include_path%)%)%,%(%if-no(%is_include_path%,,%(%filepath(%input%)%)%)%)%)%)%,%
+%Include_path,%(%else-then(%if-no(%is_include_path%,,%(%Include_path%)%)%,%(%if-no(%is_include_path%,,%(%include_path%)%)%)%)%)%,%
+%INCLUDE_PATH,%(%else-then(%INCLUDE_PATH%,%(%toupper(%Include_path%)%)%)%)%,%
+%include_path,%(%else-then(%_include_path%,%(%tolower(%Include_path%)%)%)%)%,%
+%is_target,%(%else-then(%is_target%,%(%is_Target%)%)%)%,%
+%target,%(%else-then(%if-no(%is_target%,,%(%target%)%)%,%(%if-no(%is_target%,,%(lib%Project%)%)%)%)%)%,%
+%Target,%(%else-then(%if-no(%is_target%,,%(%Target%)%)%,%(%if-no(%is_target%,,%(%target%)%)%)%)%)%,%
+%TARGET,%(%else-then(%TARGET%,%(%toupper(%Target%)%)%)%)%,%
+%target,%(%else-then(%_target%,%(%tolower(%Target%)%)%)%)%,%
+%is_base,%(%else-then(%is_base%,%(%is_Base%)%)%)%,%
+%base,%(%else-then(%if-no(%is_base%,,%(%base%)%)%,%(%if-no(%is_base%,,%(%else-then(%filebase(%File%)%,%(%Target%)%)%)%)%)%)%)%,%
+%Base,%(%else-then(%if-no(%is_base%,,%(%Base%)%)%,%(%if-no(%is_base%,,%(%base%)%)%)%)%)%,%
+%BASE,%(%else-then(%BASE%,%(%toupper(%Base%)%)%)%)%,%
+%base,%(%else-then(%_base%,%(%tolower(%Base%)%)%)%)%,%
+%%(%
+%%include(%Include_path%/file-vcproj.t)%%
+%<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="%Target%"
+	ProjectGUID="{%uuid()%}"
+	RootNamespace="%Target%"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="$(%FRAMEWORK%_LIB)"
+			IntermediateDirectory="$(%FRAMEWORK%_OBJ)"
+			ConfigurationType="4"
+			InheritedPropertySheets="%InheritedPropertySheets%"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="$(%FRAMEWORK%_INCLUDE_DIRS)"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;$(%FRAMEWORK%_DEBUG_DEFINES)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				TreatWChar_tAsBuiltInType="false"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(%FRAMEWORK%_LIB)"
+			IntermediateDirectory="$(%FRAMEWORK%_OBJ)"
+			ConfigurationType="4"
+			InheritedPropertySheets="%InheritedPropertySheets%"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="$(%FRAMEWORK%_INCLUDE_DIRS)"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;$(%FRAMEWORK%_DEBUG_DEFINES)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				TreatWChar_tAsBuiltInType="false"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(%FRAMEWORK%_LIB)"
+			IntermediateDirectory="$(%FRAMEWORK%_OBJ)"
+			ConfigurationType="4"
+			InheritedPropertySheets="%InheritedPropertySheets%"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="$(%FRAMEWORK%_INCLUDE_DIRS)"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;$(%FRAMEWORK%_RELEASE_DEFINES)"
+				RuntimeLibrary="0"
+				EnableFunctionLevelLinking="true"
+				TreatWChar_tAsBuiltInType="false"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			OutputDirectory="$(%FRAMEWORK%_LIB)"
+			IntermediateDirectory="$(%FRAMEWORK%_OBJ)"
+			ConfigurationType="4"
+			InheritedPropertySheets="%InheritedPropertySheets%"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="$(%FRAMEWORK%_INCLUDE_DIRS)"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;$(%FRAMEWORK%_RELEASE_DEFINES)"
+				RuntimeLibrary="0"
+				EnableFunctionLevelLinking="true"
+				TreatWChar_tAsBuiltInType="false"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{%uuid()%}"
+			>
+			%if(%equal(nadir,%Framework%)%,%(<File
+				RelativePath="..\..\..\..\..\source\thirdparty\gnu\getopt\getopt.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\source\thirdparty\gnu\getopt\getopt1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\source\thirdparty\gnu\getopt\getopt_init.c"
+				>
+			</File>
+			)%)%<File
+				RelativePath="..\..\..\..\..\source\xos\lib\%Project%\version.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{%uuid()%}"
+			>
+			<File
+				RelativePath="..\..\..\..\..\source\xos\lib\%Project%\version.hpp"
+				>
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
+%
+%)%)%

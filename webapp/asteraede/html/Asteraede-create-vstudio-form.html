@@ -28,27 +28,117 @@
 === form
 =====================================================================
 -->
-<form name="Form" method="POST" action="/asteraede/templates/t/VStudio/VStudio-sln-proj.t"
+<form name="Form" method="POST" action="../templates/t/VisualStudio/vstudio-vcproj.t"
  onSubmit="return setFormSubmit(getFormValue2('FormTemplate','FormAction','Form'),getFormValue('FormMethod','Form'),'Form')">
     <div class="form">
 
-    File: <input name="File" value=""></input>[VStudio-sln-proj][.t]
-    <input type="radio" name="Extension" value="VStudio" unchecked="checked">.VStudio</input>
+    File: <input name="File" value=""></input>[{sln | ...}][{.sln | ...}]
+    <input type="radio" name="Extension" value="sln" unchecked="checked">.sln</input>
+    <input type="radio" name="Extension" value="vcproj" unchecked="checked">.vcproj</input>
+    <input type="radio" name="Extension" value="vsprops" unchecked="checked">.vsprops</input>
+    <input type="radio" name="Extension" value="vcxproj" unchecked="checked">.vcxproj</input>
+    <input type="radio" name="Extension" value="props" unchecked="checked">.props</input>
     <input type="radio" name="Extension" value="" checked="checked">no</input>
     <input type="checkbox" name="is_File" value="no" unchecked="checked">no</input>
     <br/>
 
     Template: <select name="FormTemplate">
-    <option value="/asteraede/templates/t/VStudio/VStudio-sln-proj.t">.vstudio VStudio project (/asteraede/templates/t/VStudio/VStudio-sln-proj.t)</option>
+    <option value="../templates/t/VisualStudio/vstudio-sln.t">VisualStudio Solution (2005..) -- .sln &nbsp;&nbsp; (../templates/t/VisualStudio/vstudio-sln.t)</option>
     <option value=""></option>
-    <option value="/asteraede/templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (/asteraede/templates/t/t/parameters.t)</option>
-    <option value="/asteraede/templates/t/t/functions.t">t functions &nbsp;&nbsp; (/asteraede/templates/t/t/functions.t)</option>
+    <option value="../templates/t/VisualStudio/vstudio-vcproj.t">VisualStudio Project (2005..2008) -- .vcproj &nbsp;&nbsp; (../templates/t/VisualStudio/vstudio-vcproj.t)</option>
+    <option value="../templates/t/VisualStudio/vsprops-vsprops.t" selected="selected">VisualStudio Properties (2005..2008) -- .vsprops &nbsp;&nbsp; (../templates/t/VisualStudio/vsprops-vsprops.t)</option>
+    <option value="../templates/t/VisualStudio/vcproj-vsprops.t">VisualStudio Common Properties (2005..2008) -- vcproj.vsprops &nbsp;&nbsp; (../templates/t/VisualStudio/vcproj-vsprops.t)</option>
+    <option value="../templates/t/VisualStudio/vcversion-vsprops.t">VisualStudio VCVersion Properties (2005..2008) -- vcversion.vsprops &nbsp;&nbsp; (../templates/t/VisualStudio/vcversion-vsprops.t)</option>
+    <option value="../templates/t/VisualStudio/windows-vsprops.t">VisualStudio Windows Properties (2005..2008) -- windows.vsprops &nbsp;&nbsp; (../templates/t/VisualStudio/windows-vsprops.t)</option>
+    <option value=""></option>
+    <option value="../templates/t/VisualStudio/vstudio-vcxproj.t">VisualStudio Project (2010..) -- .vcxproj &nbsp;&nbsp; (../templates/t/VisualStudio/vstudio-vcxproj.t)</option>
+    <option value="../templates/t/VisualStudio/props-props.t">VisualStudio Properties (2010..) -- .props &nbsp;&nbsp; (./templates/t/VisualStudio/props-props.t)</option>
+    <option value="../templates/t/VisualStudio/vcxproj-props.t">VisualStudio Common Properties (2010..) -- vcxproj.props &nbsp;&nbsp; (../templates/t/VisualStudio/vcxproj-props.t)</option>
+    <option value="../templates/t/VisualStudio/vcversion-props.t">VisualStudio VCXVersion Properties (2010..) -- vcxversion.props &nbsp;&nbsp; (../templates/t/VisualStudio/vcversion-props.t)</option>
+    <option value="../templates/t/VisualStudio/windows-props.t">VisualStudio Windows Properties (2010..) -- windows.props &nbsp;&nbsp; (../templates/t/VisualStudio/windows-props.t)</option>
+    <option value=""></option>
+    <option value="../templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (../templates/t/t/parameters.t)</option>
+    <option value="../templates/t/t/functions.t">t functions &nbsp;&nbsp; (../templates/t/t/functions.t)</option>
     <option value=""></option>
     <option value="/asteraede-cgi/cgi">cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgi)</option>
     <option value="/asteraede-cgi/cgicatch">catch cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgicatch)</option>
     <option value=""/>
     </select>
     <br/>
+
+    <b></b>VCVersion:<select name="VCVersion">
+    <option value=""></option>
+    <option value="vc7">VisualStudio 2002 (vc7) (1300)</option>
+    <option value="vc7.1">VisualStudio 2003 (vc7.1) (1310)</option>
+    <option value="vc8">VisualStudio 2005 (vc8) (1400)</option>
+    <option value="vc9" selected="selected">VisualStudio 2008 (vc9) (1500)</option>
+    <option value=""></option>
+    </select><b></b>
+    <input type="checkbox" name="is_VCVersion" value="no" unchecked="checked">no</input>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <b></b>VCXVersion:<select name="VCXVersion">
+    <option value=""></option>
+    <option value="vc10" selected="selected">VisualStudio 2010 (vc10) (1600)</option>
+    <option value="vc11">VisualStudio 2012 (vc11) (1700)</option>
+    <option value="vc12">VisualStudio 2013 (vc12) (1800)</option>
+    <option value="vc14">VisualStudio 2015 (vc14) (1900)</option>
+    <option value="vc15">VisualStudio 2017 (vc15) (1910)</option>
+    <option value="vc16">VisualStudio 2019 (vc16) (1920)</option>
+    <option value=""></option>
+    </select><b></b>
+    <input type="checkbox" name="is_VCXVersion" value="no" unchecked="checked">no</input>
+    <br/>
+
+    <br/>
+    <b></b>Framework:<input name="Framework" value=""/><b></b>[asteraede]
+    <input type="checkbox" name="is_Framework" value="no" unchecked="checked">no</input>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <b></b>Depends:<input name="Depends" value=""/><b></b>[rostra;nadir;fila;crono;rete;stara]
+    <input type="checkbox" name="is_Depends" value="no" checked="checked">no</input>
+    <br/>
+    <b></b>Project:<input name="Project" value=""/><b></b>[%Framework%]
+    <input type="checkbox" name="is_Project" value="no" unchecked="checked">no</input>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    Application: <select name="Application">
+    <option value="console-exe">console executable</option>
+    <option value="static-lib">static library</option>
+    <option value=""></option>
+    </select>[console executable]
+    <input name="is_Application" value="no" type="checkbox" unchecked="checked">no</input>
+    <br/>
+
+    Source: <select name="Source">
+    <option value="source">source</option>
+    <option value="src">src</option>
+    <option value=""></option>
+    </select>[source]
+    <input name="is_Source" value="no" type="checkbox" unchecked="checked">no</input>
+    Build: <select name="Build">
+    <option value="build">build</option>
+    <option value="bld">bld</option>
+    <option value=""></option>
+    </select>[build]
+    <input name="is_Build" value="no" type="checkbox" unchecked="checked">no</input>
+    <b></b>Apps:<input name="Apps" value=""></input><b>;...</b>[]
+    <input type="checkbox" name="is_Apps" value="no" unchecked="checked">no</input>
+    <br/>
+
+    <br/>
+    <b>&lt;UserMacro Name=&quot;</b><input name="UserMacro" value=""/>=Value<b>&quot;&gt;;...</b>[]
+    <input type="checkbox" name="is_UserMacro" value="no" checked="checked">no</input><br/>
+    <b>&lt;UserMacro Name=&quot;REPO_DIR&quot; Value=&quot;</b><input name="REPO_DIR" value="../../../../../.."></input><b>;...&quot;&gt;</b>[]
+    <input type="checkbox" name="is_REPO_DIR" value="no" unchecked="checked">no</input><br/>
+
+    <br/>
+    <b>&lt;UserMacro Name=&quot;WINDOWS_DEFINES&quot; Value=&quot;</b><input name="WINDOWS_DEFINES" value="WINSOCK_2;DEFAULT_LOGGING_LEVELS_ERROR;XOS_CONSOLE_MAIN_MAIN"></input><b>;...&quot;&gt;</b>[]
+    <input type="checkbox" name="is_WINDOWS_DEFINES" value="no" unchecked="checked">no</input><br/>
+    <b>&lt;UserMacro Name=&quot;WINDOWS_INCLUDE_DIRS&quot; Value=&quot;</b><input name="WINDOWS_INCLUDE_DIRS" value="$(NADIR_SOURCE_DIR)/thirdparty/gnu/getopt;$(ROSTRA_SOURCE_DIR)/xos/platform/microsoft/windows/posix"></input><b>;...&quot;&gt;</b>[]
+    <input type="checkbox" name="is_WINDOWS_INCLUDE_DIRS" value="no" unchecked="checked">no</input><br/>
+    <b>&lt;UserMacro Name=&quot;WINDOWS_LIB_DIRS&quot; Value=&quot;</b><input name="WINDOWS_LIB_DIRS" value=""></input><b>;...&quot;&gt;</b>[]
+    <input type="checkbox" name="is_WINDOWS_LIB_DIRS" value="no" unchecked="checked">no</input><br/>
+    <b>&lt;UserMacro Name=&quot;WINDOWS_LIBS&quot; Value=&quot;</b><input name="WINDOWS_LIBS" value="Ws2_32.lib"></input><b>;...&quot;&gt;</b>[]
+    <input type="checkbox" name="is_WINDOWS_LIBS" value="no" unchecked="checked">no</input><br/>
+    
 
     <br/>
     Copyright:<input name="Genesis" size="10" value=""/>[1988]<b></b>
@@ -82,10 +172,10 @@
     </select>
     <br/>
     Action: <select name="FormAction">
-    <option value="/asteraede/templates/t/VStudio/VStudio-sln-proj.t">.vstudio VStudio project (/asteraede/templates/t/VStudio/VStudio-sln-proj.t)</option>
+    <option value="../templates/t/VisualStudio/vstudio-vcproj.t">.vstudio VStudio project (../templates/t/VisualStudio/vstudio-vcproj.t)</option>
     <option value=""></option>
-    <option value="/asteraede/templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (/asteraede/templates/t/t/parameters.t)</option>
-    <option value="/asteraede/templates/t/t/functions.t">t functions &nbsp;&nbsp; (/asteraede/templates/t/t/functions.t)</option>
+    <option value="../templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (../templates/t/t/parameters.t)</option>
+    <option value="../templates/t/t/functions.t">t functions &nbsp;&nbsp; (../templates/t/t/functions.t)</option>
     <option value=""></option>
     <option value="/asteraede-cgi/cgi">cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgi)</option>
     <option value="/asteraede-cgi/cgicatch">catch cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgicatch)</option>

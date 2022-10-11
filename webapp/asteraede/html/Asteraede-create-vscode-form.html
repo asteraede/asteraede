@@ -15,12 +15,12 @@
 === or otherwise) arising in any way out of the use of this software, 
 === even if advised of the possibility of such damage.
 ===
-===   File: Asteraede-create-bash-form.html
+===   File: Asteraede-create-vscode-form.html
 ===
 === Author: $author$
-===   Date: 10/6/2022
+===   Date: 10/7/2022
 =====================================================================
-=== Application=Asteraede Part=create-bash-form
+=== Application=Asteraede Part=create-vscode-form
 -->
 
 <!--
@@ -28,23 +28,22 @@
 === form
 =====================================================================
 -->
-<form name="Form" method="POST" action="/asteraede/templates/t/bash/bash.t"
+<form name="Form" method="POST" action="../templates/t/VisualStudio/code-workspace.t"
  onSubmit="return setFormSubmit(getFormValue2('FormTemplate','FormAction','Form'),getFormValue('FormMethod','Form'),'Form')">
     <div class="form">
 
-    File: <input name="File" value=""></input>[bash][.t]
-    <input type="radio" name="Extension" value="bash" unchecked="checked">.bash</input>
-    <input type="radio" name="Extension" value="sh" unchecked="checked">.sh</input>
+    File: <input name="File" value=""></input>[asteraede][.code-workspace]
+    <input type="radio" name="Extension" value="code-workspace" unchecked="checked">.code-workspace</input>
+    <input type="radio" name="Extension" value="json" unchecked="checked">.json</input>
     <input type="radio" name="Extension" value="" checked="checked">no</input>
     <input type="checkbox" name="is_File" value="no" unchecked="checked">no</input>
     <br/>
 
     Template: <select name="FormTemplate">
-    <option value="/asteraede/templates/t/bash/bash.t">bash script (/asteraede/templates/t/bash/bash.t)</option>
-    <option value="/asteraede/templates/t/bash/tarme-bash.t">tarme bash script (/asteraede/templates/t/bash/tarme-bash.t)</option>
+    <option value="../templates/t/VisualStudio/code-workspace.t">.vscode VSCode project (../templates/t/VisualStudio/code-workspace.t)</option>
     <option value=""></option>
-    <option value="/asteraede/templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (/asteraede/templates/t/t/parameters.t)</option>
-    <option value="/asteraede/templates/t/t/functions.t">t functions &nbsp;&nbsp; (/asteraede/templates/t/t/functions.t)</option>
+    <option value="../templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (../templates/t/t/parameters.t)</option>
+    <option value="../templates/t/t/functions.t">t functions &nbsp;&nbsp; (../templates/t/t/functions.t)</option>
     <option value=""></option>
     <option value="/asteraede-cgi/cgi">cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgi)</option>
     <option value="/asteraede-cgi/cgicatch">catch cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgicatch)</option>
@@ -53,10 +52,14 @@
     <br/>
 
     <br/>
-    Repository: <input name="Repository" value=""></input>[asteraede]
-    <input name="is_Repository" value="no" type="checkbox" unchecked="checked">no</input>
-    <b>&nbsp;&nbsp;</b>Hostname: <input name="Hostname" value=""></input>[macbook3]
-    <input name="is_Hostname" value="no" type="checkbox" unchecked="checked">no</input>
+    Workspace: <input name="Workspace" value=""></input>[asteraede]
+    <input type="checkbox" name="is_Workspace" value="no" unchecked="checked">no</input>
+    <br/>
+
+    <b>{ "folders": [ { "path": "</b><input name="Path" value=""></input>[../../../../..]
+    <b>/</b><input name="Folders" value=""></input>[%Workspace%]<b>;..."</b>
+    <input type="checkbox" name="is_Path" value="no" unchecked="checked">no</input>
+    <b>} ] }</b>
     <br/>
 
     <br/>
@@ -91,10 +94,10 @@
     </select>
     <br/>
     Action: <select name="FormAction">
-    <option value="/asteraede/templates/t/bash/bash.t">.bash bash script (/asteraede/templates/t/bash/bash.t)</option>
+    <option value="../templates/t/VisualStudio/code-workspace.t">.vscode VSCode project (../templates/t/VisualStudio/code-workspace.t)</option>
     <option value=""></option>
-    <option value="/asteraede/templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (/asteraede/templates/t/t/parameters.t)</option>
-    <option value="/asteraede/templates/t/t/functions.t">t functions &nbsp;&nbsp; (/asteraede/templates/t/t/functions.t)</option>
+    <option value="../templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (../templates/t/t/parameters.t)</option>
+    <option value="../templates/t/t/functions.t">t functions &nbsp;&nbsp; (../templates/t/t/functions.t)</option>
     <option value=""></option>
     <option value="/asteraede-cgi/cgi">cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgi)</option>
     <option value="/asteraede-cgi/cgicatch">catch cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgicatch)</option>

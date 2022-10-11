@@ -28,26 +28,159 @@
 === form
 =====================================================================
 -->
-<form name="Form" method="POST" action="/asteraede/templates/t/Makefile/Makefile.t"
+<form name="Form" method="POST" action="../templates/t/Makefile/framework-Makefile.t"
  onSubmit="return setFormSubmit(getFormValue2('FormTemplate','FormAction','Form'),getFormValue('FormMethod','Form'),'Form')">
     <div class="form">
 
-    File: <input name="File" value=""></input>[Makefile][.t]
-    <input type="radio" name="Extension" value="Makefile" unchecked="checked">.Makefile</input>
-    <input type="radio" name="Extension" value="" checked="checked">no</input>
+    File: <input name="File" value=""></input>[{ Makefile | Makedefines | Makerules | Makedirs }]
+    <input type="radio" name="Extension" value="makefile" unchecked="checked">.makefile</input>
+    <input type="radio" name="Extension" value="make" unchecked="checked">.make</input>
+    <input type="radio" name="Extension" value="mak" unchecked="checked">.mak</input>
+    <input type="radio" name="Extension" value="mk" unchecked="checked">.mk</input>
+    <input type="radio" name="Extension" value="" checked="">no</input>
     <input type="checkbox" name="is_File" value="no" unchecked="checked">no</input>
     <br/>
 
     Template: <select name="FormTemplate">
-    <option value="/asteraede/templates/t/Makefile/Makefile.t">.makefile (/asteraede/templates/t/Makefile/Makefile.t)</option>
+    <option value="../templates/t/Makefile/thirdparty-Makefile.t">thirdparty Makefile &nbsp;&nbsp; (../templates/t/Makefile/thirdparty-Makefile.t)</option>
     <option value=""></option>
-    <option value="/asteraede/templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (/asteraede/templates/t/t/parameters.t)</option>
-    <option value="/asteraede/templates/t/t/functions.t">t functions &nbsp;&nbsp; (/asteraede/templates/t/t/functions.t)</option>
+    <option value="../templates/t/Makefile/framework-Makefile.t"selected="selected">Makefile (../templates/t/Makefile/framework-Makefile.t)</option>
+    <option value="../templates/t/Makefile/os-framework-Makefile.t">os Makefile &nbsp;&nbsp; (../templates/t/Makefile/os-framework-Makefile.t)</option>
+    <option value="../templates/t/Makefile/build-framework-Makefile.t">build Makefile &nbsp;&nbsp; (../templates/t/Makefile/build-framework-Makefile.t)</option>
+    <option value="../templates/t/Makefile/build-framework-Makedefines.t">build Makedefines &nbsp;&nbsp; (../templates/t/Makefile/build-framework-Makedefines.t)</option>
+    <option value=""></option>
+    <option value="../templates/t/Makefile/framework-Makedefines.t">Makedefines &nbsp;&nbsp; (../templates/t/Makefile/framework-Makedefines.t)</option>
+    <option value="../templates/t/Makefile/framework-Makerules.t">Makedrules &nbsp;&nbsp; (../templates/t/Makefile/framework-Makederules.t)</option>
+    <option value="../templates/t/Makefile/framework-Makedirs.t">Makedirs &nbsp;&nbsp; (../templates/t/Makefile/framework-Makededirs.t)</option>
+    <option value=""></option>
+    <option value="../templates/t/Makefile/framework-lib-Makefile.t">library Makefile &nbsp;&nbsp; (../templates/t/Makefile/framework-lib-Makefile.t)</option>
+    <option value="../templates/t/Makefile/os-framework-lib-Makefile.t">os library Makefile &nbsp;&nbsp; (../templates/t/Makefile/os-framework-lib-Makefile.t)</option>
+    <option value=""></option>
+    <option value="../templates/t/Makefile/framework-exe-Makefile.t">executable Makefile &nbsp;&nbsp; (../templates/t/Makefile/framework-exe-Makefile.t)</option>
+    <option value="../templates/t/Makefile/os-framework-exe-Makefile.t">os executable Makefile &nbsp;&nbsp; (../templates/t/Makefile/os-framework-lib-Makefile.t)</option>
+    <option value=""></option>
+    <option value="../templates/t/Makefile/framework-slib-Makefile.t">shared library Makefile &nbsp;&nbsp; (../templates/t/Makefile/framework-slib-Makefile.t)</option>
+    <option value="../templates/t/Makefile/os-framework-slib-Makefile.t">os shared library Makefile &nbsp;&nbsp; (../templates/t/Makefile/os-framework-slib-Makefile.t)</option>
+    <option value=""></option>
+    <option value="../templates/t/Makefile/framework-kmod-Makefile.t">kernel module Makefile &nbsp;&nbsp; (../templates/t/Makefile/framework-kmod-Makefile.t)</option>
+    <option value="../templates/t/Makefile/os-framework-kmod-Makefile.t">os kernel module Makefile &nbsp;&nbsp; (../templates/t/Makefile/os-framework-kmod-Makefile.t)</option>
+    <option value=""></option>
+    <option value="../templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (../templates/t/t/parameters.t)</option>
+    <option value="../templates/t/t/functions.t">t functions &nbsp;&nbsp; (../templates/t/t/functions.t)</option>
     <option value=""></option>
     <option value="/asteraede-cgi/cgi">cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgi)</option>
     <option value="/asteraede-cgi/cgicatch">catch cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgicatch)</option>
     <option value=""/>
     </select>
+    <br/>
+
+    </br>
+    Framework: <input name="Framework" value=""/>[asteraede]
+    <input name="is_Framework" value="no" type="checkbox" unchecked="checked">no</input>
+    Depends: <input name="Depends" value=""/>[rostra;nadir;fila;crono;cifra;rete;stara]
+    <input name="is_Depends" value="no" type="checkbox" checked="checked">no</input>
+    <br/>
+    Target: <input name="Target" value=""/>[%Framework%]
+    <input name="is_Target" value="no" type="checkbox" unchecked="checked">no</input>
+    <br/>
+    <b>namespace </b><input name="Target_namespace" value=""></input>[<input name="Source_framework" value=""></input>[%Framework%]<b></b>
+    <b></b><input type="checkbox" name="is_Source_framework" value="no" unchecked="checked">no</input> /{ lib/%Framework% | app/console/%Framework% }]<b></b>
+    <b></b><input type="checkbox" name="is_Target_namespace" value="no" unchecked="checked">no</input> <b>{...}</b>
+    <br/>
+    <b>class </b><input name="Target_class" value=""></input>[{ version | main }]<b></b>
+    <b></b><input type="checkbox" name="is_Target_class" value="no" unchecked="checked">no</input> <b>{...}</b>
+    <br/>
+
+    <br/>
+    Source: <select name="Source">
+    <option value="source" selected="selected">source</option>
+    <option value="src">src</option>
+    <option value=""></option>
+    </select>[source]
+    <input name="is_Source" value="no" type="checkbox" unchecked="checked">no</input>
+    <br/>
+    Include: <select name="Include">
+    <option value="include">include</option>
+    <option value="inc">inc</option>
+    <option value=""></option>
+    </select>[include]
+    <input name="is_Include" value="no" type="checkbox" unchecked="checked">no</input>
+    <br/>
+    Os: <input name="Os" value=""/><select name="Os_select">
+    <option value=""></option>
+    <option value="Linux">Linux</option>
+    <option value="MacOSX">MacOSX</option>
+    <option value="Windows">Windows</option>
+    </select>[Linux] <input type="checkbox" name="is_Os" value="no" checked="yes"/>no<br/>
+    Uname: <input name="Uname" value=""/><select name="Uname_select">
+    <option value=""></option>
+    <option value="Linux">Linux</option>
+    <option value="Darwin">MacOSX</option>
+    <option value="Windows">Windows</option>
+    </select>[$(shell uname)] <input type="checkbox" name="is_Os" value="no" unchecked="yes"/>no
+    <br/>
+
+    <br/>
+    Version: <input name="Version_major" value="0" size="10"/>
+    <select name="Version_major_separator">
+    <option value="." selected="selected">.</option>
+    <option value="-">-</option>
+    <option value="_">_</option>
+    </select>
+    <input name="Version_minor" value="0" size="10"/>
+    <input name="is_Version_minor" value="no" type="checkbox" unchecked="checked">no</input>
+    <select name="Version_minor_separator">
+    <option value="." selected="selected">.</option>
+    <option value="-">-</option>
+    <option value="_">_</option>
+    </select>
+    <input name="Version_release" value="0" size="10"/>
+    <input name="is_Version_release" value="no" type="checkbox" unchecked="checked">no</input>
+    <select name="Version_release_separator">
+    <option value=".">.</option>
+    <option value="-" selected="selected">-</option>
+    <option value="_">_</option>
+    </select>
+    <input name="Version_build" value="0" size="10"/>
+    <input name="is_Version_build" value="no" type="checkbox" checked="checked">no</input>
+    <input name="is_Version" value="no" type="checkbox" unchecked="checked">no</input>
+    <br/>
+    Archived:<b>.</b><select name="Archived">
+    <option value="tar">tar</option>
+    <option value="zip">zip</option>
+    </select><b></b>
+    <input type="checkbox" name="is_Archived" value="no" unchecked="checked">no</input>
+    <b>.</b><select name="Compressed">
+    <option value="gz">gz</option>
+    <option value="bz2">bz2</option>
+    <option value="xz">xz</option>
+    <option value="zip">zip</option>
+    </select><b></b>
+    <input type="checkbox" name="is_Compressed" value="no" unchecked="checked">no</input>
+    <br/>
+    Depends: <input name="Depends_version_major" value="0" size="10"/>
+    <select name="Depends_version_major_separator">
+    <option value="." selected="selected">.</option>
+    <option value="-">-</option>
+    <option value="_">_</option>
+    </select>
+    <input name="Depends_version_minor" value="0" size="10"/>
+    <input name="is_Depends_version_minor" value="no" type="checkbox" unchecked="checked">no</input>
+    <select name="Depends_version_minor_separator">
+    <option value="." selected="selected">.</option>
+    <option value="-">-</option>
+    <option value="_">_</option>
+    </select>
+    <input name="Depends_version_release" value="0" size="10"/>
+    <input name="is_Depends_version_release" value="no" type="checkbox" unchecked="checked">no</input>
+    <select name="Depends_version_release_separator">
+    <option value=".">.</option>
+    <option value="-" selected="selected">-</option>
+    <option value="_">_</option>
+    </select>
+    <input name="Depends_version_build" value="0" size="10"/>
+    <input name="is_Depends_version_build" value="no" type="checkbox" checked="checked">no</input>
+    <input name="is_Depends_version" value="no" type="checkbox" unchecked="checked">no</input>
     <br/>
 
     <br/>
@@ -82,10 +215,10 @@
     </select>
     <br/>
     Action: <select name="FormAction">
-    <option value="/asteraede/templates/t/Makefile/Makefile.t">.makefile (/asteraede/templates/t/Makefile/Makefile.t)</option>
+    <option value="../templates/t/Makefile/framework-Makefile.t">Makefile (../templates/t/Makefile/framework-Makefile.t)</option>
     <option value=""></option>
-    <option value="/asteraede/templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (/asteraede/templates/t/t/parameters.t)</option>
-    <option value="/asteraede/templates/t/t/functions.t">t functions &nbsp;&nbsp; (/asteraede/templates/t/t/functions.t)</option>
+    <option value="../templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (../templates/t/t/parameters.t)</option>
+    <option value="../templates/t/t/functions.t">t functions &nbsp;&nbsp; (../templates/t/t/functions.t)</option>
     <option value=""></option>
     <option value="/asteraede-cgi/cgi">cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgi)</option>
     <option value="/asteraede-cgi/cgicatch">catch cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgicatch)</option>
