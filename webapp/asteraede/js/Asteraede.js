@@ -229,6 +229,18 @@ function onWindowPopdownClick(event) {
         }
     }
 }
+function onWindowDropdownPopdownUnClick() {
+        var x = document.getElementById(thisPopdown);
+        if (x) {
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                if (initPopdown) { 
+                    x.style.display = "none"; 
+                }
+            }
+        }
+}
 
 /*
 **
@@ -244,6 +256,7 @@ function onDropdownClick(dropdown, event) {
     if (!dropdown) { dropdown = "myDropdown"; }
     if (dropdown) {
         var x = document.getElementById(dropdown);
+        onWindowDropdownPopdownUnClick();
         if (x) {
             thisDropdown = dropdown;
             if (x.style.display !== "block") {

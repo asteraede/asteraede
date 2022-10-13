@@ -96,6 +96,7 @@
 -->
 <html>
 %include(%Include_path%/head-html.t)%%
-%%include(%Include_path%/body-html.t)%</html>
+%%include(%Include_path%/body-html.t)%%
+%</html>
 %
 %)%)%
