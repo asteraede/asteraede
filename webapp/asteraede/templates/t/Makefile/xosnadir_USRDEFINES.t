@@ -13,10 +13,12 @@
 %# or otherwise) arising in any way out of the use of this software, 
 %# even if advised of the possibility of such damage.
 %#
-%#   File: Framework-depends.t
+%#   File: xosnadir_USRDEFINES.t
 %#
 %# Author: $author$
-%#   Date: 7/17/2022
+%#   Date: 10/17/2022
 %########################################################################
 %with(%
-%%(rostra;nadir;fila;crono;cifra;rete;stara)%)%
+%%(-DNO_USE_NADIR_BASE \
+-DNO_USE_XOS_LOGGER_INTERFACE \
+)%)%

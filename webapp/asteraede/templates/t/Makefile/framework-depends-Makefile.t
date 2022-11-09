@@ -16,7 +16,7 @@
 %#   File: framework-depends-Makefile.t
 %#
 %# Author: $author$
-%#   Date: 12/26/2021
+%#   Date: 12/26/2021, 10/17/2022
 %########################################################################
 %with(%
 %%(%
@@ -27,7 +27,7 @@
 %%(%
 %########################################################################
 # %Depend%
-%DEPEND%_VERSION_MAJOR = 0
+%else-then(%include(%Include_path%/%Depend%.t)%,%(%DEPEND%_VERSION_MAJOR = 0
 %DEPEND%_VERSION_MINOR = 0
 %DEPEND%_VERSION_RELEASE = 0
 %DEPEND%_VERSION = ${%DEPEND%_VERSION_MAJOR}.${%DEPEND%_VERSION_MINOR}.${%DEPEND%_VERSION_RELEASE}
@@ -44,16 +44,16 @@
 %DEPEND%_BLD = ${%DEPEND%_PKG}/${BLD}/${BUILD_TYPE}
 %DEPEND%_LIB = ${%DEPEND%_BLD}/lib
 %DEPEND%_BIN = ${%DEPEND%_BLD}/bin
-
+)%)%
 # %Depend% USRDEFINES
 #
 %Depend%_USRDEFINES += \
-
+%else-then(%include(%Include_path%/%Depend%_USRDEFINES.t)%,%()%)%
 # %Depend% USRINCLUDES
 #
 %Depend%_USRINCLUDES += \
--I${%DEPEND%_SRC} \
-
+%else-then(%include(%Include_path%/%Depend%_USRINCLUDES.t)%,%(-I${%DEPEND%_SRC} \
+)%)%
 # %Depend% USRCXXFLAGS
 #
 %Depend%_USRCXXFLAGS += \

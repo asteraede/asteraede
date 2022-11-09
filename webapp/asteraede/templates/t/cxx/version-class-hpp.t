@@ -13,10 +13,26 @@
 %# or otherwise) arising in any way out of the use of this software, 
 %# even if advised of the possibility of such damage.
 %#
-%#   File: Framework-depends.t
+%#   File: version-class-hpp.t
 %#
 %# Author: $author$
-%#   Date: 7/17/2022
+%#   Date: 11/1/2022
 %########################################################################
 %with(%
-%%(rostra;nadir;fila;crono;cifra;rete;stara)%)%
+%%(%
+%%File_ifndef_begin%%
+%
+#include "xos/lib/version.hpp"
+%
+%%Namespace_begin%%
+%
+/// class version
+class exported version {
+public:
+    /// which
+    static const ::xos::lib::version& which();
+}; /// class version
+%
+%%Namespace_end%%
+%%File_ifndef_end%%
+%)%)%

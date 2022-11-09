@@ -19,25 +19,64 @@
 %#   Date: 5/2/2019
 %########################################################################
 %with(%
-%include_path,%(%else-then(%include_path%,%(%filepath(%input%)%)%)%)%,%
-%Organization,%(%else-then(%Organization%,%($organization$)%)%)%,%
+%is_organization,%(%else-then(%is_organization%,%(%is_Organization%)%)%)%,%
+%organization,%(%else-then(%if-no(%is_organization%,,%(%organization%)%)%,%(%if-no(%is_organization%,,%($organization$)%)%)%)%)%,%
+%Organization,%(%else-then(%if-no(%is_organization%,,%(%Organization%)%)%,%(%if-no(%is_organization%,,%(%organization%)%)%)%)%)%,%
 %ORGANIZATION,%(%else-then(%ORGANIZATION%,%(%toupper(%Organization%)%)%)%)%,%
-%organization,%(%else-then(%_Organization%,%(%tolower(%Organization%)%)%)%)%,%
-%Author,%(%else-then(%Author%,%($author$)%)%)%,%
+%organization,%(%else-then(%_organization%,%(%tolower(%Organization%)%)%)%)%,%
+%is_author,%(%else-then(%is_author%,%(%is_Author%)%)%)%,%
+%author,%(%else-then(%if-no(%is_author%,,%(%author%)%)%,%(%if-no(%is_author%,,%($author$)%)%)%)%)%,%
+%Author,%(%else-then(%if-no(%is_author%,,%(%Author%)%)%,%(%if-no(%is_author%,,%(%author%)%)%)%)%)%,%
 %AUTHOR,%(%else-then(%AUTHOR%,%(%toupper(%Author%)%)%)%)%,%
-%author,%(%else-then(%_Author%,%(%tolower(%Author%)%)%)%)%,%
-%File,%(%else-then(%File%,%(file)%)%)%,%
-%FILE,%(%else-then(%FILE%,%(%toupper(%File%)%)%)%)%,%
-%file,%(%else-then(%_File%,%(%tolower(%File%)%)%)%)%,%
-%Name,%(%else-then(%Name%,%(%else-then(%filebase(%File%)%,%File%)%)%)%)%,%
+%author,%(%else-then(%_author%,%(%tolower(%Author%)%)%)%)%,%
+%is_date,%(%else-then(%is_date%,%(%is_Date%)%)%)%,%
+%date,%(%else-then(%if-no(%is_date%,,%(%date%)%)%,%(%if-no(%is_date%,,%(%date()%)%)%)%)%)%,%
+%Date,%(%else-then(%if-no(%is_date%,,%(%Date%)%)%,%(%if-no(%is_date%,,%(%date%)%)%)%)%)%,%
+%DATE,%(%else-then(%DATE%,%(%toupper(%Date%)%)%)%)%,%
+%date,%(%else-then(%_date%,%(%tolower(%Date%)%)%)%)%,%
+%is_year,%(%else-then(%is_year%,%(%is_Year%)%)%)%,%
+%year,%(%else-then(%if-no(%is_year%,,%(%year%)%)%,%(%if-no(%is_year%,,%(%year()%)%)%)%)%)%,%
+%Year,%(%else-then(%if-no(%is_year%,,%(%Year%)%)%,%(%if-no(%is_year%,,%(%year%)%)%)%)%)%,%
+%YEAR,%(%else-then(%YEAR%,%(%toupper(%Year%)%)%)%)%,%
+%year,%(%else-then(%_year%,%(%tolower(%Year%)%)%)%)%,%
+%is_genesis,%(%else-then(%is_genesis%,%(%is_Genesis%)%)%)%,%
+%genesis,%(%else-then(%if-no(%is_genesis%,,%(%genesis%)%)%,%(%if-no(%is_genesis%,,%(1988)%)%)%)%)%,%
+%Genesis,%(%else-then(%if-no(%is_genesis%,,%(%Genesis%)%)%,%(%if-no(%is_genesis%,,%(%genesis%)%)%)%)%)%,%
+%GENESIS,%(%else-then(%GENESIS%,%(%toupper(%Genesis%)%)%)%)%,%
+%genesis,%(%else-then(%_genesis%,%(%tolower(%Genesis%)%)%)%)%,%
+%is_typeextension,%(%else-then(%is_typeextension%,%(%is_TypeExtension%)%)%)%,%
+%typeextension,%(%else-then(%if-no(%is_typeextension%,,%(%typeextension%)%)%,%(%if-no(%is_typeextension%,,%(hpp)%)%)%)%)%,%
+%TypeExtension,%(%else-then(%if-no(%is_typeextension%,,%(%TypeExtension%)%)%,%(%if-no(%is_typeextension%,,%(%typeextension%)%)%)%)%)%,%
+%TYPEEXTENSION,%(%else-then(%TYPEEXTENSION%,%(%toupper(%TypeExtension%)%)%)%)%,%
+%is_name,%(%else-then(%is_name%,%(%is_Name%)%)%)%,%
+%name,%(%else-then(%if-no(%is_name%,,%(%name%)%)%,%(%if-no(%is_name%,,%(%else-then(%Base%,%(%else-then(%fileextension(%File%)%,%TypeExtension%)%)%)%)%)%)%)%)%,%
+%Name,%(%else-then(%if-no(%is_name%,,%(%Name%)%)%,%(%if-no(%is_name%,,%(%name%)%)%)%)%)%,%
 %NAME,%(%else-then(%NAME%,%(%toupper(%Name%)%)%)%)%,%
-%name,%(%else-then(%_Name%,%(%tolower(%Name%)%)%)%)%,%
-%Extension,%(%else-then(%Extension%,%(%else-then(%fileextension(%File%)%,hxx)%)%)%)%,%
+%name,%(%else-then(%_name%,%(%tolower(%Name%)%)%)%)%,%
+%typeextension,%(%else-then(%_typeextension%,%(%tolower(%TypeExtension%)%)%)%)%,%
+%is_base,%(%else-then(%is_base%,%(%is_Base%)%)%)%,%
+%base,%(%else-then(%if-no(%is_base%,,%(%base%)%)%,%(%if-no(%is_base%,,%(%else-then(%filebase(%File%)%,%Name%)%)%)%)%)%)%,%
+%Base,%(%else-then(%if-no(%is_base%,,%(%Base%)%)%,%(%if-no(%is_base%,,%(%base%)%)%)%)%)%,%
+%BASE,%(%else-then(%BASE%,%(%toupper(%Base%)%)%)%)%,%
+%base,%(%else-then(%_base%,%(%tolower(%Base%)%)%)%)%,%
+%is_extension,%(%else-then(%is_extension%,%(%is_Extension%)%)%)%,%
+%extension,%(%else-then(%if-no(%is_extension%,,%(%extension%)%)%,%(%if-no(%is_extension%,,%(%else-then(%fileextension(%File%)%,%TypeExtension%)%)%)%)%)%)%,%
+%Extension,%(%else-then(%if-no(%is_extension%,,%(%Extension%)%)%,%(%if-no(%is_extension%,,%(%extension%)%)%)%)%)%,%
 %EXTENSION,%(%else-then(%EXTENSION%,%(%toupper(%Extension%)%)%)%)%,%
-%extension,%(%else-then(%_Extension%,%(%tolower(%Extension%)%)%)%)%,%
+%extension,%(%else-then(%_extension%,%(%tolower(%Extension%)%)%)%)%,%
+%is_baseextension,%(%else-then(%is_baseextension%,%(%is_BaseExtension%)%)%)%,%
+%baseextension,%(%else-then(%if-no(%is_baseextension%,,%(%baseextension%)%)%,%(%if-no(%is_baseextension%,,%(%Base%%then-if(%Extension%,%(.)%)%)%)%)%)%)%,%
+%BaseExtension,%(%else-then(%if-no(%is_baseextension%,,%(%BaseExtension%)%)%,%(%if-no(%is_baseextension%,,%(%baseextension%)%)%)%)%)%,%
+%BASEEXTENSION,%(%else-then(%BASEEXTENSION%,%(%toupper(%BaseExtension%)%)%)%)%,%
+%baseextension,%(%else-then(%_baseextension%,%(%tolower(%BaseExtension%)%)%)%)%,%
+%is_file,%(%else-then(%is_file%,%(%is_File%)%)%)%,%
+%file,%(%else-then(%if-no(%is_file%,,%(%file%)%)%,%(%if-no(%is_file%,,%(%Base%)%)%)%)%)%,%
+%File,%(%else-then(%if-no(%is_file%,,%(%File%)%)%,%(%if-no(%is_file%,,%(%file%)%)%)%)%)%,%
+%FILE,%(%else-then(%FILE%,%(%toupper(%File%)%)%)%)%,%
+%file,%(%else-then(%_file%,%(%tolower(%File%)%)%)%)%,%
 %%(%
 %///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-%year()% $organization$
+/// Copyright (c) %Genesis%-%Year% %Organization%
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -53,8 +92,8 @@
 ///
 ///   File: %Name%.%Extension%
 ///
-/// Author: $author$
-///   Date: %date()%
+/// Author: %Author%
+///   Date: %Date%
 ///////////////////////////////////////////////////////////////////////
 %
 %)%)%

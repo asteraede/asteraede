@@ -16,7 +16,7 @@
 %#   File: xos-app-console-what-main-options-hpp.t
 %#
 %# Author: $author$
-%#   Date: 1/3/2022
+%#   Date: 1/3/2022, 10/23/2022
 %########################################################################
 %with(%
 %is_include_path,%(%else-then(%is_include_path%,%(%is_Include_path%)%)%)%,%
@@ -59,6 +59,11 @@
 %Main_class,%(%else-then(%if-no(%is_main_class%,,%(%Main_class%)%)%,%(%if-no(%is_main_class%,,%(%main_class%)%)%)%)%)%,%
 %MAIN_CLASS,%(%else-then(%MAIN_CLASS%,%(%toupper(%Main_class%)%)%)%)%,%
 %main_class,%(%else-then(%_main_class%,%(%tolower(%Main_class%)%)%)%)%,%
+%is_main_classt,%(%else-then(%is_main_classt%,%(%is_Main_classt%)%)%)%,%
+%main_classt,%(%else-then(%if-no(%is_main_classt%,,%(%main_classt%)%)%,%(%if-no(%is_main_classt%,,%(%Main_class%t)%)%)%)%)%,%
+%Main_classt,%(%else-then(%if-no(%is_main_classt%,,%(%Main_classt%)%)%,%(%if-no(%is_main_classt%,,%(%main_classt%)%)%)%)%)%,%
+%MAIN_CLASST,%(%else-then(%MAIN_CLASST%,%(%toupper(%Main_classt%)%)%)%)%,%
+%main_classt,%(%else-then(%_main_classt%,%(%tolower(%Main_classt%)%)%)%)%,%
 %is_extends,%(%else-then(%is_extends%,%(%is_Extends%)%)%)%,%
 %extends,%(%else-then(%if-no(%is_extends%,,%(%extends%)%)%,%(%if-no(%is_extends%,,%(%Main%)%)%)%)%)%,%
 %Extends,%(%else-then(%if-no(%is_extends%,,%(%Extends%)%)%,%(%if-no(%is_extends%,,%(%extends%)%)%)%)%)%,%
@@ -156,9 +161,17 @@
 %namespace,%(%else-then(%_namespace%,%(%tolower(%Namespace%)%)%)%)%,%
 %is_extends_namespace,%(%else-then(%is_extends_namespace%,%(%is_Extends_Namespace%)%)%)%,%
 %extends_namespace,%(%else-then(%if-no(%is_extends_namespace%,,%(%extends_namespace%)%)%,%(%if-no(%is_extends_namespace%,,%(%Extends_Module%)%)%)%)%)%,%
+%Extends_namespace,%(%else-then(%if-no(%is_extends_namespace%,,%(%Extends_namespace%)%)%,%(%if-no(%is_extends_namespace%,,%(%extends_namespace%)%)%)%)%)%,%
 %Extends_Namespace,%(%else-then(%if-no(%is_extends_namespace%,,%(%Extends_Namespace%)%)%,%(%if-no(%is_extends_namespace%,,%(%extends_namespace%)%)%)%)%)%,%
 %EXTENDS_NAMESPACE,%(%else-then(%EXTENDS_NAMESPACE%,%(%toupper(%Extends_Namespace%)%)%)%)%,%
 %extends_namespace,%(%else-then(%_extends_namespace%,%(%tolower(%Extends_Namespace%)%)%)%)%,%
+%is_extends_ns,%(%else-then(%is_extends_ns%,%(%is_Extends_ns%)%)%)%,%
+%extends_ns,%(%else-then(%if-no(%is_extends_ns%,,%(%extends_ns%)%)%,%(%if-no(%is_extends_ns%,,%(%
+%%parse(%Extends_namespace%,/,,%(::)%)%%
+%)%)%)%)%)%,%
+%Extends_ns,%(%else-then(%if-no(%is_extends_ns%,,%(%Extends_ns%)%)%,%(%if-no(%is_extends_ns%,,%(%extends_ns%)%)%)%)%)%,%
+%EXTENDS_NS,%(%else-then(%EXTENDS_NS%,%(%toupper(%Extends_ns%)%)%)%)%,%
+%extends_ns,%(%else-then(%_extends_ns%,%(%tolower(%Extends_ns%)%)%)%)%,%
 %is_ifndef,%(%else-then(%is_ifndef%,%(%is_Ifndef%)%)%)%,%
 %ifndef,%(%else-then(%if-no(%is_ifndef%,,%(%ifndef%)%)%,%(%if-no(%is_ifndef%,,%(%parse(%Namespace%,/,,_,,%(%Namespace%)%,Namespace)%)%)%)%)%)%,%
 %Ifndef,%(%else-then(%if-no(%is_ifndef%,,%(%Ifndef%)%)%,%(%if-no(%is_ifndef%,,%(%ifndef%)%)%)%)%)%,%
@@ -263,6 +276,9 @@
 %%if-no(%is_main_class%,,%(%
 %%include(%Include_path%/file-hpp.t)%%
 %%File_ifndef_begin%%
+%
+#include "%Extends_path%/%Main_class%.hpp"
+%
 %)%)%%
 %)%)%%
 %%parse(%Parameters%,;,,,,%(%
@@ -350,14 +366,51 @@
 #define %IFNDEF%_%CLASS%_ARGV 0,
 %
 %%if-no(%is_main_class%,,%(%Namespace_begin%
-/// class %Main_class%
-class exported %Main_class% {
+/// class %Main_classt%
+template 
+<class TExtends = %Extends_ns%::%Main_classt%<>, 
+ class TImplements = typename TExtends::implements>
+
+class exported %Main_classt%: virtual public TImplements, public TExtends {
 public:
-    %Main_class%() {}
-    virtual ~%Main_class%() {}
-private
-    %Main_class%(const %Main_class% &copy) {}
+    typedef TImplements implements;
+    typedef TExtends extends;
+    typedef %Main_classt% derives;
+
+    typedef typename extends::char_t char_t;
+    typedef typename extends::end_char_t end_char_t;
+    enum { end_char = extends::end_char };
+    typedef typename extends::string_t string_t;
+    typedef typename extends::reader_t reader_t;
+    typedef typename extends::writer_t writer_t;
+    typedef typename extends::file_t file_t;
+
+    /// constructor / destructor
+    %Main_classt%(): run_(0) {
+    }
+    virtual ~%Main_classt%() {
+    }
+private:
+    %Main_classt%(const %Main_classt% &copy) {
+        throw exception(exception_unexpected);
+    }
+
 protected:
+    typedef typename extends::in_reader_t in_reader_t;
+    typedef typename extends::out_writer_t out_writer_t;
+    typedef typename extends::err_writer_t err_writer_t;
+
+    /// ...run
+    int (derives::*run_)(int argc, char_t** argv, char_t** env);
+    virtual int run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if ((run_)) {
+            err = (this->*run_)(argc, argv, env);
+        } else {
+            err = extends::run(argc, argv, env);
+        }
+        return err;
+    }
 )%)%%
 %%parse(%Parameters%,;,,,,%(%
 %%with(%
@@ -424,6 +477,8 @@ protected:
      int optind, int argc, char_t**argv, char_t**env) {
         int err = 0;
         switch(optval) {%
+%%if(%Parameters%,%(
+)%)%%
 %%parse(%Parameters%,;,,,,%(%
 %%with(%
 %is_name,%(%else-then(%is_name%,%(%is_Name%)%)%)%,%
@@ -438,6 +493,8 @@ protected:
             err = this->on_%Name%_option(optval, optarg, optname, optind, argc, argv, env);
             break;)%)%%
 %)%,Parameter)%%
+%%if(%Parameters%,%(
+)%)%%
 %
         default:
             err = extends::on_option(optval, optarg, optname, optind, argc, argv, env);
@@ -464,6 +521,8 @@ protected:
 %    virtual const char_t* option_usage(const char_t*& optarg, const struct option* longopt) {
         const char_t* chars = "";
         switch(longopt->val) {%
+%%if(%Parameters%,%(
+)%)%%
 %%parse(%Parameters%,;,,,,%(%
 %%with(%
 %is_name,%(%else-then(%is_name%,%(%is_Name%)%)%)%,%
@@ -480,6 +539,8 @@ protected:
             chars = this->%Name%_option_usage(optarg, longopt);)%)%
             break;)%)%%
 %)%,Parameter)%%
+%%if(%Parameters%,%(
+)%)%%
 %
         default:
             chars = extends::option_usage(optarg, longopt);
@@ -507,7 +568,7 @@ protected:
     }
 %
 %%if-no(%is_main_class%,,%(
-} /// class %Main_class%
+}; /// class %Main_classt%
 %Namespace_end%)%%
 %%if-no(%is_file%,,%(%
 %%if-no(%is_main_class%,,%(%

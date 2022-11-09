@@ -43,16 +43,27 @@
 %Depends,%(%else-then(%if-no(%is_depends%,,%(%Depends%)%)%,%(%if-no(%is_depends%,,%(%depends%)%)%)%)%)%,%
 %DEPENDS,%(%else-then(%DEPENDS%,%(%toupper(%Depends%)%)%)%)%,%
 %depends,%(%else-then(%_depends%,%(%tolower(%Depends%)%)%)%)%,%
+%is_creds,%(%else-then(%is_creds%,%(%is_Creds%)%)%)%,%
+%creds,%(%else-then(%if-no(%is_creds%,,%(%creds%)%)%,%(%if-no(%is_creds%,,%(creds)%)%)%)%)%,%
+%Creds,%(%else-then(%if-no(%is_creds%,,%(%Creds%)%)%,%(%if-no(%is_creds%,,%(%creds%)%)%)%)%)%,%
+%CREDS,%(%else-then(%CREDS%,%(%toupper(%Creds%)%)%)%)%,%
+%creds,%(%else-then(%_creds%,%(%tolower(%Creds%)%)%)%)%,%
+%is_thirdparty,%(%else-then(%is_thirdparty%,%(%is_Thirdparty%)%)%)%,%
+%thirdparty,%(%else-then(%if-no(%is_thirdparty%,,%(%thirdparty%)%)%,%(%if-no(%is_thirdparty%,,%(thirdparty)%)%)%)%)%,%
+%Thirdparty,%(%else-then(%if-no(%is_thirdparty%,,%(%Thirdparty%)%)%,%(%if-no(%is_thirdparty%,,%(%thirdparty%)%)%)%)%)%,%
+%THIRDPARTY,%(%else-then(%THIRDPARTY%,%(%toupper(%Thirdparty%)%)%)%)%,%
+%thirdparty,%(%else-then(%_thirdparty%,%(%tolower(%Thirdparty%)%)%)%)%,%
 %%(%
 %%include(%Include_path%/file-Makefile.t)%%
 %
 OTHER_VERSION_PKG = ${PKG}%if(%Language%,/..)%%if(%Style%,/..)%
 OTHER_DEPENDS_PKG = ${PKG}%if(%Language%,/..)%%if(%Style%,/..)%/..
-OTHER_THIRDPARTY_NAME = thirdparty
+OTHER_THIRDPARTY_NAME = %Thirdparty%
 OTHER_THIRDPARTY_VERSION_PKG = ${OTHER_VERSION_PKG}/${OTHER_THIRDPARTY_NAME}
 
 %FRAMEWORK%_PKG = ${PKG}
 %FRAMEWORK%_SRC = ${%FRAMEWORK%_PKG}/%Source%
+%FRAMEWORK%_CRD_SRC = ${%FRAMEWORK%_PKG}/%Creds%/%Source%
 %FRAMEWORK%_BLD = ${%FRAMEWORK%_PKG}/${BLD}/${BUILD_TYPE}
 %FRAMEWORK%_LIB = ${%FRAMEWORK%_BLD}/lib
 %FRAMEWORK%_BIN = ${%FRAMEWORK%_BLD}/bin
@@ -69,12 +80,14 @@ OTHER_THIRDPARTY_VERSION_PKG = ${OTHER_VERSION_PKG}/${OTHER_THIRDPARTY_NAME}
 %DEPENDS,%(%else-then(%_DEPENDS%,%(%toupper(%Depends%)%)%)%)%,%
 %%(${%Depends%_USRDEFINES} \
 )%)%)%,Depends)%%
+%%else-then(%include(%Include_path%/%Framework%_USRDEFINES.t)%,%()%)%%
 %${build_%Framework%_USRDEFINES} \
 
 # %Framework% USRINCLUDES
 #
 %Framework%_USRINCLUDES += \
 -I${%FRAMEWORK%_SRC} \
+-I${%FRAMEWORK%_CRD_SRC} \
 %reverse-parse(%Depends%,;,,,,%(%
 %%with(%
 %DEPENDS,%(%else-then(%_DEPENDS%,%(%toupper(%Depends%)%)%)%)%,%

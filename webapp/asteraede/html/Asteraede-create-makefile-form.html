@@ -50,7 +50,7 @@
     <option value="../templates/t/Makefile/build-framework-Makedefines.t">build Makedefines &nbsp;&nbsp; (../templates/t/Makefile/build-framework-Makedefines.t)</option>
     <option value=""></option>
     <option value="../templates/t/Makefile/framework-Makedefines.t">Makedefines &nbsp;&nbsp; (../templates/t/Makefile/framework-Makedefines.t)</option>
-    <option value="../templates/t/Makefile/framework-Makerules.t">Makedrules &nbsp;&nbsp; (../templates/t/Makefile/framework-Makederules.t)</option>
+    <option value="../templates/t/Makefile/framework-Makerules.t">Makerules &nbsp;&nbsp; (../templates/t/Makefile/framework-Makederules.t)</option>
     <option value="../templates/t/Makefile/framework-Makedirs.t">Makedirs &nbsp;&nbsp; (../templates/t/Makefile/framework-Makededirs.t)</option>
     <option value=""></option>
     <option value="../templates/t/Makefile/framework-lib-Makefile.t">library Makefile &nbsp;&nbsp; (../templates/t/Makefile/framework-lib-Makefile.t)</option>
@@ -82,6 +82,12 @@
     <br/>
     Target: <input name="Target" value=""/>[%Framework%]
     <input name="is_Target" value="no" type="checkbox" unchecked="checked">no</input>
+    <b>_</b><select name="Exe">
+    <option value=""></option>
+    <option value="_exe">exe</option>
+    <option value=""></option>
+    </select><b></b>
+    <input type="checkbox" name="is_Exe" value="no" unchecked="checked">no</input>
     <br/>
     <b>namespace </b><input name="Target_namespace" value=""></input>[<input name="Source_framework" value=""></input>[%Framework%]<b></b>
     <b></b><input type="checkbox" name="is_Source_framework" value="no" unchecked="checked">no</input> /{ lib/%Framework% | app/console/%Framework% }]<b></b>

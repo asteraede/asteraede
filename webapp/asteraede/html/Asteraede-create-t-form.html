@@ -18,7 +18,7 @@
 ===   File: Asteraede-create-t-form.html
 ===
 === Author: $author$
-===   Date: 9/10/2022
+===   Date: 9/10/2022, 11/4/2022
 =====================================================================
 === Application=Asteraede Part=create-t-form
 -->
@@ -28,7 +28,7 @@
 === form
 =====================================================================
 -->
-<form name="Form" method="POST" action="/asteraede/templates/t/t/t.t"
+<form name="Form" method="POST" action="../templates/t/t/t.t"
  onSubmit="return setFormSubmit(getFormValue2('FormTemplate','FormAction','Form'),getFormValue('FormMethod','Form'),'Form')">
     <div class="form">
 
@@ -40,15 +40,16 @@
     <br/>
 
     Template: <select name="FormTemplate">
-    <option value="/asteraede/templates/t/t/t.t">.t .t file (/asteraede/templates/t/t/t.t)</option>
-    <option value="/asteraede/templates/t/t/file-parameters-t.t">.t file parameters (/asteraede/templates/t/t/file-parameters-t.t)</option>
+    <option value=""/>
+    <option value="../templates/t/t/t.t" selected="selected">.t file (../templates/t/t/t.t)</option>
+    <option value="../templates/t/t/file-parameters-t.t">.t file parameters (../templates/t/t/file-parameters-t.t)</option>
     <option value=""></option>
-    <option value="/asteraede/templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (/asteraede/templates/t/t/parameters.t)</option>
-    <option value="/asteraede/templates/t/t/functions.t">t functions &nbsp;&nbsp; (/asteraede/templates/t/t/functions.t)</option>
+    <option value="../templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (../templates/t/t/parameters.t)</option>
+    <option value="../templates/t/t/functions.t">t functions &nbsp;&nbsp; (../templates/t/t/functions.t)</option>
     <option value=""></option>
     <option value="/asteraede-cgi/cgi">cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgi)</option>
     <option value="/asteraede-cgi/cgicatch">catch cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgicatch)</option>
-    <option value=""/>
+    <option value=""></option>
     </select>
     <br/>
 
@@ -67,15 +68,19 @@
     <br/>
     Type: <select name="TypeExtension">
     <option value=""></option>
+    <option value="code-workspace">.code-workspace</option>
+    <option value=""></option>
     <option value="texta">.texta</option>
     <option value="t" selected="selected">.t</option>
     <option value=""></option>
+    <option value="xhtml">.xhtml</option>
     <option value="xslt">.xslt</option>
     <option value="xml">.xml</option>
     <option value=""></option>
     <option value="html">.html</option>
     <option value="css">.css</option>
     <option value="js">.js</option>
+    <option value="json">.json</option>
     <option value=""></option>
     </select>
     <input type="checkbox" name="is_TypeExtension" value="no" unchecked="checked">no</input>
@@ -113,10 +118,10 @@
     </select>
     <br/>
     Action: <select name="FormAction">
-    <option value="/asteraede/templates/t/t/t.t">.t .t file (/asteraede/templates/t/t/t.t)</option>
+    <option value="../templates/t/t/t.t">.t file (../templates/t/t/t.t)</option>
     <option value=""></option>
-    <option value="/asteraede/templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (/asteraede/templates/t/t/parameters.t)</option>
-    <option value="/asteraede/templates/t/t/functions.t">t functions &nbsp;&nbsp; (/asteraede/templates/t/t/functions.t)</option>
+    <option value="../templates/t/t/parameters.t">t parameters &nbsp;&nbsp; (../templates/t/t/parameters.t)</option>
+    <option value="../templates/t/t/functions.t">t functions &nbsp;&nbsp; (../templates/t/t/functions.t)</option>
     <option value=""></option>
     <option value="/asteraede-cgi/cgi">cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgi)</option>
     <option value="/asteraede-cgi/cgicatch">catch cgi parameters &nbsp;&nbsp; (/asteraede-cgi/cgicatch)</option>

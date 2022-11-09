@@ -82,13 +82,13 @@
 %LIBTARGETEXE,%(%else-then(%LIBTARGETEXE%,%(%toupper(%LibTargetExe%)%)%)%)%,%
 %libtargetexe,%(%else-then(%_libtargetexe%,%(%tolower(%LibTargetExe%)%)%)%)%,%
 %is_source_framework,%(%else-then(%is_source_framework%,%(%is_Source_framework%)%)%)%,%
-%source_framework,%(%else-then(%if-no(%is_source_framework%,,%(%source_framework%)%)%,%(%if-no(%is_source_framework%,,%(%Framework%)%)%)%)%)%,%
+%source_framework,%(%else-then(%if-no(%is_source_framework%,,%(%source_framework%)%)%,%(%if-no(%is_source_framework%,,%(xos)%)%)%)%)%,%
 %Source_framework,%(%else-then(%if-no(%is_source_framework%,,%(%Source_framework%)%)%,%(%if-no(%is_source_framework%,,%(%source_framework%)%)%)%)%)%,%
 %SOURCE_FRAMEWORK,%(%else-then(%SOURCE_FRAMEWORK%,%(%toupper(%Source_framework%)%)%)%)%,%
 %source_framework,%(%else-then(%_source_framework%,%(%tolower(%Source_framework%)%)%)%)%,%
 %is_target_namespace,%(%else-then(%is_target_namespace%,%(%is_Target_namespace%)%)%)%,%
 %target_namespace,%(%else-then(%if-no(%is_target_namespace%,,%(%target_namespace%)%)%,%(%if-no(%is_target_namespace%,,%(%
-%%else(%Lib%%SLib%%KMod%,%(%Source_framework%/app/console/%Framework%)%,%(%Source_framework%/lib/%Framework%)%)%)%)%)%)%)%,%
+%%else(%Lib%%SLib%%KMod%,%(%Source_framework%/app/console/%Target%)%,%(%Source_framework%/lib/%Target%)%)%)%)%)%)%)%,%
 %Target_namespace,%(%else-then(%if-no(%is_target_namespace%,,%(%Target_namespace%)%)%,%(%if-no(%is_target_namespace%,,%(%target_namespace%)%)%)%)%)%,%
 %TARGET_NAMESPACE,%(%else-then(%TARGET_NAMESPACE%,%(%toupper(%Target_namespace%)%)%)%)%,%
 %target_namespace,%(%else-then(%_target_namespace%,%(%tolower(%Target_namespace%)%)%)%)%,%
@@ -111,7 +111,7 @@
 #
 %LibTargetExe%_%OUT%TARGET = %LibTarget%%then-if(%if(%LIB%,%(${LIBEXT})%)%%if(%SLIB%,%(${SLIBEXT})%)%%if(%KMOD%,%(${KMODEXT})%)%,.)%
 
-%if(%KMOD%,,%(########################################################################
+%if(%KMod%,,%(########################################################################
 
 #
 # user c++ flags
@@ -124,6 +124,12 @@ ${%Framework%_USRCXXFLAGS} \
 #
 %LibTargetExe%_USRDEFINES += \
 ${%Framework%_USRDEFINES} \
+-DDEFAULT_LOGGING_LEVELS_ERROR \%
+%%else(%Lib%%SLib%%KMod%,%(
+-DXOS_CONSOLE_MAIN_MAIN \
+)%,%(
+-DXOS_LIB_%FRAMEWORK%_VERSION_BUILD_DATE=%date()% #${shell tdate} \
+)%)%
 
 #
 # user includes
