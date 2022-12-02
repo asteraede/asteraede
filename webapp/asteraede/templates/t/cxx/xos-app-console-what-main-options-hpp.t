@@ -271,13 +271,19 @@
 %Namespace_end,%(%else-then(%if-no(%is_namespace_end%,,%(%Namespace_end%)%)%,%(%if-no(%is_namespace_end%,,%(%namespace_end%)%)%)%)%)%,%
 %NAMESPACE_END,%(%else-then(%NAMESPACE_END%,%(%toupper(%Namespace_end%)%)%)%)%,%
 %namespace_end,%(%else-then(%_namespace_end%,%(%tolower(%Namespace_end%)%)%)%)%,%
+%is_extends_ns_path,%(%else-then(%is_extends_ns_path%,%(%is_Extends_ns_path%)%)%)%,%
+%extends_ns_path,%(%else-then(%if-no(%is_extends_ns_path%,,%(%extends_ns_path%)%)%,%(%if-no(%is_extends_ns_path%,,%(%
+%%parse(%Extends_path%,::,,/)%)%)%)%)%)%,%
+%Extends_ns_path,%(%else-then(%if-no(%is_extends_ns_path%,,%(%Extends_ns_path%)%)%,%(%if-no(%is_extends_ns_path%,,%(%extends_ns_path%)%)%)%)%)%,%
+%EXTENDS_NS_PATH,%(%else-then(%EXTENDS_NS_PATH%,%(%toupper(%Extends_ns_path%)%)%)%)%,%
+%extends_ns_path,%(%else-then(%_extends_ns_path%,%(%tolower(%Extends_ns_path%)%)%)%)%,%
 %%(%
 %%if-no(%is_file%,,%(%
 %%if-no(%is_main_class%,,%(%
 %%include(%Include_path%/file-hpp.t)%%
 %%File_ifndef_begin%%
 %
-#include "%Extends_path%/%Main_class%.hpp"
+#include "%Extends_ns_path%/%Main_class%.hpp"
 %
 %)%)%%
 %)%)%%
